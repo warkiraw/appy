@@ -11,6 +11,7 @@ import News from './screens/News';
 import Ideas from './screens/Ideas';
 import Cabinet from './screens/Cabinet';
 import Page from './screens/Page';
+import ShowDetails from './screens/ShowDetails';
 const switchNavigator = createSwitchNavigator({
     Auth: Auth,
     Help: Help,
@@ -21,7 +22,10 @@ const switchNavigator = createSwitchNavigator({
             News: News,
             Page: Page 
         }),
-        Ideas: Ideas,
+        Ideas:createStackNavigator({
+            Ideas: Ideas,
+            ShowDetails: ShowDetails 
+        }),
         Cabinet: Cabinet,
     },
     {

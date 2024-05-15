@@ -17,6 +17,7 @@
     "@react-navigation/stack": "^6.3.29",
     "2gis-maps": "^3.7.4",
     "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12",
     "expo": "^51.0.5",
     "expo-camera": "~15.0.8",
     "expo-checkbox": "~3.0.0",
@@ -38,7 +39,10 @@
     "react-native-swiper": "^1.6.0",
     "react-navigation": "^4.4.4",
     "react-navigation-material-bottom-tabs": "^2.3.5",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "react-native-web": "~0.19.10",
+    "react-dom": "18.2.0",
+    "@expo/metro-runtime": "~3.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

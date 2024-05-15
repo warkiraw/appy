@@ -23,7 +23,7 @@ const Auth = ({ navigation }) => {
     };
     
     const help = () => {
-        navigation.navigate('Help');
+      navigation.navigate('Ideas');
     }
     return <View style={styles.container}>
     <View style={styles.box}>
