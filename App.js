@@ -3,30 +3,25 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import Auth from './screens/Auth';
-import Help from './screens/Help';
-import Registration from './screens/Registration';
-import ForgotPassword from './screens/ForgotPassword';
-import News from './screens/News';
-import Ideas from './screens/Ideas';
+import Shows from './screens/shows';
 import Cabinet from './screens/Cabinet';
-import Page from './screens/Page';
 import ShowDetails from './screens/ShowDetails';
+import AR from './screens/AR';
+import Love from './screens/Love';
+import Bilet from './screens/Bilet';
+import Tickets from './screens/tickets';
+import { areaConversion } from 'geolib';
 const switchNavigator = createSwitchNavigator({
-    Auth: Auth,
-    Help: Help,
-    ForgotPassword : ForgotPassword,
-    Registration: Registration,
     mainFlow: createMaterialBottomTabNavigator({
-        News:createStackNavigator({
-            News: News,
-            Page: Page 
+        Афиша:createStackNavigator({
+            Афиша:Shows,
+            ShowDetails:ShowDetails,
+            Tickets:Tickets,
         }),
-        Ideas:createStackNavigator({
-            Ideas: Ideas,
-            ShowDetails: ShowDetails 
-        }),
-        Cabinet: Cabinet,
+        Музей : AR,
+        Билет : Bilet,
+        Предзаказ : Love,
+        Кабинет: Cabinet,
     },
     {
         activeColor: '#ffffff',

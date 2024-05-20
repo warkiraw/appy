@@ -1,56 +1,76 @@
-import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, View, TextInput, Button, Linking } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from 'react';
+import React from 'react';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { send, EmailJSResponseStatus } from '@emailjs/react-native';
 
-const Cabinet = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export default function Cabinet () {
+  const [email, setEmail] = useState();
+  const [name, setName] = useState();
 
-    useEffect(() => {
-        const getData = async () => {
-            const storedEmail = await AsyncStorage.getItem('email');
-            const storedPassword = await AsyncStorage.getItem('password');
-            setEmail(storedEmail);
-            setPassword(storedPassword);
-        };
-        getData();
-    }, []);
+  const onSubmit = async () => {
+    try {
+      await send(
+        'service_dqnav8x',
+        'template_59n0nmq',
+        {
+          name:'nigga',
+          email:'warkigarki@gmail.com',
+          message: 'This is a static message',
+        },
+        {
+          publicKey: 'uuWISHTDpOw_OrCF1',
+        },
+      );
 
-    const renderPassword = () => {
-        return '*'.repeat(password.length);
-    };
+      console.log('SUCCESS!');
+    } catch (err) {
+      if (err instanceof EmailJSResponseStatus) {
+        console.log('EmailJS Request Failed...', err);
+      }
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.box}>
-                <Text style={styles.header}>Личный кабинет</Text>
-                <Text>Email: {email}</Text>
-                <Text>Password: {renderPassword()}</Text>
-            </View>
-        </View>
-    );
+      console.log('ERROR', err);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+    <TextInput
+      style={styles.input}
+      inputMode="email"
+      keyboardType="email-address"
+      textContentType="emailAddress"
+      placeholder="Email"
+      value={email}
+      onChangeText={setEmail}
+    />
+    <TextInput
+      style={styles.input}
+      inputMode="text"
+      placeholder="Name"
+      value={name}
+      onChangeText={setName}
+    />
+    <Button style={styles.button} title="Submit" onPress={onSubmit} />
+  </View>
+  );
 };
-
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingHorizontal: 20,
     },
-    box: {
-        width: '80%',
-        backgroundColor: '#f4f4f4',
-        padding: 20,
-        borderRadius: 10,
-        alignItems: 'center',
-        elevation: 5,
+    input: {
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      borderRadius: 5,
+      paddingHorizontal: 10,
+      marginBottom: 10,
+      width: '100%',
     },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
+    button: {
+      marginTop: 10,
     },
-});
-
-export default Cabinet;
+  });

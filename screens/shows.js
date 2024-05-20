@@ -3,7 +3,7 @@ import { ScrollView, View, Text, Image, StyleSheet } from 'react-native';
 import cheerio from 'cheerio';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from "react-native";
-const Ideas = ({navigation}) => {
+const Shows = ({navigation}) => {
     const handleShowPress = (showId) => {
         navigation.navigate('ShowDetails', { showId });
     };
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Ideas;
+export default Shows;
